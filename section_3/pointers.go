@@ -5,8 +5,16 @@ func stringPrinter(value *string) {
 	println("Value =>", *value)
 }
 
-func main() {
-	fullName := "Yousef Dawood"
+func swapPTR(first *int, second *int) (*int, *int) {
+	temp := *first // will be escaped to heap
+	*first = *second
+	second = &temp
 
-	stringPrinter(&fullName)
+	return first, second
+}
+
+func main() {
+	a, b := 10, 20
+	first, second := swapPTR(&a, &b)
+	println(first, second)
 }
